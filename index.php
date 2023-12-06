@@ -27,7 +27,7 @@
     </article>
   </main>
   <footer>
-    <p class="copyright">&copy; 商品開発アプリ ALL rights reserved.</p>
+    <p class="copyright">&copy; 商品管理アプリ ALL rights reserved.</p>
   </footer>
 </body>
 
