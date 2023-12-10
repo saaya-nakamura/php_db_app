@@ -71,6 +71,12 @@ $stmt_select->execute();
   <main>
     <article class="products">
       <h1>商品一覧</h1>
+      <?php
+      //（商品の登録・編集・削除後）messageパラメータの値を受け取っていれば、それを表示する
+      if(isset($_GET['message'])){
+        echo "<p class='success'>{$_GET['message']}</p>";
+      }
+      ?>
       <div class="products-ui">
         <div>
         <a href ="read.php?order=desc&keyword=<?= $keyword?>">
@@ -84,7 +90,7 @@ $stmt_select->execute();
           <input type="text" class="search-box" placeholder="商品名で検索" name="keyword" value="<?= $keyword ?>">
         </form>
       </div>
-        <a href="#" class="btn">商品登録</a>
+        <a href="create.php" class="btn">商品登録</a>
       </div>
       <table class="products-table">
         <tr>
@@ -93,6 +99,8 @@ $stmt_select->execute();
           <th>単価</th>
           <th>在庫数</th>
           <th>仕入先コード</th>
+          <th>編集</th>
+          <th>削除</th>
         </tr>
         <?php
         //配列の中身を順番に取り出し表形式で出力する
@@ -104,6 +112,8 @@ $stmt_select->execute();
           <td>{$product['price']}</td>
           <td>{$product['stock_quantity']}</td>
           <td>{$product['vendor_code']}</td>
+          <td><a href='update.php?id={$product['id']}'><img src='images/edit.png' alt='編集' class='edit-icon'></a></td>
+          <td><a href='delete.php?id={$product['id']}'><img src='images/delete.png' alt='削除' class='delete-icon'></a></td>
           </tr>
           ";
           echo $table_row;
